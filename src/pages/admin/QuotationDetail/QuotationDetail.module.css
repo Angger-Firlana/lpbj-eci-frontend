@@ -4,130 +4,6 @@
   gap: 20px;
 }
 
-.listHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
-}
-
-.listTitle {
-  font-size: 20px;
-  font-weight: 400;
-  margin: 0;
-  color: #000000;
-}
-
-.listSubtitle {
-  margin-top: 6px;
-  font-size: 12px;
-  color: #9c9c9c;
-}
-
-.primaryButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
-  border: none;
-  border-radius: 999px;
-  background: #000000;
-  color: #f4f4f4;
-  font-size: 12px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.primaryIcon {
-  width: 16px;
-  height: 16px;
-}
-
-.card {
-  background: #ffffff;
-  border: 1px solid #d9d9d9;
-  border-radius: 12px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.cardBody {
-  padding: 16px 18px;
-}
-
-.cardHeader {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-
-.cardTitle {
-  font-size: 18px;
-  font-weight: 500;
-  margin: 0;
-}
-
-.cardIcon {
-  width: 20px;
-  height: 24px;
-}
-
-.tableHeader {
-  display: grid;
-  grid-template-columns: 1.1fr 1.8fr 1.1fr 0.8fr 0.5fr 0.8fr 0.5fr;
-  padding: 12px 16px;
-  font-size: 12px;
-  color: #9c9c9c;
-  border-bottom: 1px solid #d9d9d9;
-}
-
-.tableRow {
-  display: grid;
-  grid-template-columns: 1.1fr 1.8fr 1.1fr 0.8fr 0.5fr 0.8fr 0.5fr;
-  padding: 12px 16px;
-  font-size: 12px;
-  align-items: center;
-  cursor: pointer;
-  border-bottom: 1px solid #d9d9d9;
-}
-
-.tableRowAlt {
-  background: #f4f4f4;
-}
-
-.rowActions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.iconButton {
-  border: none;
-  background: none;
-  padding: 0;
-  cursor: pointer;
-  color: #000000;
-}
-
-.statusBadge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-}
-
-.statusApprovedBadge {
-  background: #2af31f;
-  color: #000000;
-}
-
-.statusDraftBadge {
-  background: #d9d9d9;
-  color: #000000;
-}
-
 .detailHeader {
   display: flex;
   justify-content: space-between;
@@ -172,6 +48,25 @@
   color: #000000;
 }
 
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: none;
+  border-radius: 999px;
+  background: #000000;
+  color: #f4f4f4;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.primaryIcon {
+  width: 16px;
+  height: 16px;
+}
+
 .detailGrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 360px;
@@ -184,55 +79,33 @@
   gap: 20px;
 }
 
-.approverGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 12px;
+.card {
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.approverOption {
-  border: 1px solid #9c9c9c;
-  background: #efefef;
-  border-radius: 8px;
-  padding: 10px 12px;
+.cardBody {
+  padding: 16px 18px;
+}
+
+.cardHeader {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  cursor: pointer;
-  text-align: left;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
-.approverSelected {
-  border-color: #000000;
+.cardTitle {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
 }
 
-.approverName {
-  font-size: 15px;
-  color: #000000;
-}
-
-.approverRole {
-  font-size: 12px;
-  color: #9c9c9c;
-}
-
-.approverIndicator {
-  width: 18px;
-  height: 18px;
-  border-radius: 6px;
-  border: 1px solid #9c9c9c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #000000;
-}
-
-.approverCount {
-  margin-top: 10px;
-  font-size: 12px;
-  color: #000000;
+.cardIcon {
+  width: 20px;
+  height: 24px;
 }
 
 .infoGrid {
@@ -265,9 +138,64 @@
   overflow-x: auto;
 }
 
-.tablePlaceholder {
-  min-height: 140px;
+.tableHeader {
+  display: grid;
+  padding: 12px 16px;
+  font-size: 12px;
+  color: #9c9c9c;
+  border-bottom: 1px solid #d9d9d9;
+  background: #f8f9fa;
+}
+
+.tableRow {
+  display: grid;
+  padding: 12px 16px;
+  font-size: 12px;
+  align-items: center;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.tableRowAlt {
+  background: #f4f4f4;
+}
+
+.summarySection {
+  padding: 16px;
+  background: #f9f9f9;
   border-top: 1px solid #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summaryLabel {
+  font-size: 14px;
+  color: #9c9c9c;
+}
+
+.summaryValue {
+  font-size: 14px;
+  color: #1a1a1a;
+}
+
+.summaryLabelTotal {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a1a;
+  padding-top: 8px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.summaryValueTotal {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
 }
 
 .panel {
@@ -320,10 +248,9 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   color: #000000;
-  font-weight: 500;
   text-align: center;
   padding: 24px 12px;
 }
@@ -351,6 +278,16 @@
   color: #ff3b30;
 }
 
+.approverName {
+  font-size: 15px;
+  color: #000000;
+}
+
+.approverRole {
+  font-size: 12px;
+  color: #9c9c9c;
+}
+
 .statusList {
   display: flex;
   flex-direction: column;
@@ -367,10 +304,7 @@
 
 .statusApproved {
   border: 1px solid #55ff55;
-}
-
-.statusPending {
-  border: 1px solid #f4ca20;
+  background: #f0fff0;
 }
 
 .statusIcon {
@@ -397,12 +331,6 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-
-.modalLarge {
-  width: 600px;
-  max-height: 90vh;
-  overflow-y: auto;
 }
 
 .modalHeader {
@@ -482,28 +410,29 @@
   background: #f4f4f4;
 }
 
+.approverIndicator {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+}
+
 @media (max-width: 1100px) {
   .detailGrid {
     grid-template-columns: 1fr;
   }
-
-  .approverGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
-@media (max-width: 720px) {
-  .listHeader {
+@media (max-width: 760px) {
+  .detailHeader {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .approverGrid {
+  .infoGrid {
     grid-template-columns: 1fr;
-  }
-
-  .tableHeader,
-  .tableRow {
-    grid-template-columns: 1.2fr 2fr 1.2fr 0.8fr 0.6fr 0.8fr 0.6fr;
   }
 }

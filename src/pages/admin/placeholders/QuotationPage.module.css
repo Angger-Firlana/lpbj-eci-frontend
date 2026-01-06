@@ -1,0 +1,139 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.listTitle {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+  color: #000000;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 1.3fr 1.2fr 1fr 0.8fr 0.6fr 1fr 1fr 1.2fr;
+  padding: 12px 16px;
+  font-size: 12px;
+  color: #9c9c9c;
+  border-bottom: 1px solid #d9d9d9;
+  background: #f8f9fa;
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 1.3fr 1.2fr 1fr 0.8fr 0.6fr 1fr 1fr 1.2fr;
+  padding: 12px 16px;
+  font-size: 12px;
+  align-items: center;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.tableRowAlt {
+  background: #f4f4f4;
+}
+
+.rowActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconButton {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: #000000;
+}
+
+.iconButton:hover {
+  color: #0086bd;
+}
+
+.buatPoButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #000000;
+  color: #f4f4f4;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.buatPoButton:hover {
+  background: #333333;
+}
+
+.buatPoIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.statusDraft {
+  background: #d9d9d9;
+  color: #000000;
+}
+
+.statusApproved {
+  background: #2af31f;
+  color: #000000;
+}
+
+.statusSubmitted {
+  background: #f4ca20;
+  color: #000000;
+}
+
+@media (max-width: 1100px) {
+  .tableHeader,
+  .tableRow {
+    grid-template-columns: 1.2fr 1.1fr 0.9fr 0.7fr 0.5fr 0.9fr 0.9fr 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .listHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card {
+    overflow-x: auto;
+  }
+
+  .tableHeader,
+  .tableRow {
+    min-width: 900px;
+  }
+}

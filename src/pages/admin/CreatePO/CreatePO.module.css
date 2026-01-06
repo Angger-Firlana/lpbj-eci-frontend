@@ -1,0 +1,258 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detailHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.detailLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.backButton {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.listTitle {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+  color: #000000;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cardBody {
+  padding: 16px 18px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.cardTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.cardIcon {
+  width: 20px;
+  height: 20px;
+  color: #1a1a1a;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formFieldFull {
+  grid-column: 1 / -1;
+}
+
+.formLabel {
+  font-size: 12px;
+  color: #9c9c9c;
+}
+
+.input {
+  height: 36px;
+  border-radius: 8px;
+  background: #eaeaea;
+  border: 1px solid transparent;
+  padding: 0 10px;
+  font-size: 12px;
+  color: #1a1a1a;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #0086bd;
+}
+
+.inputMuted {
+  background: #f4f4f4;
+  color: #9c9c9c;
+}
+
+.textarea {
+  border-radius: 8px;
+  background: #eaeaea;
+  border: 1px solid transparent;
+  padding: 8px 10px;
+  font-size: 12px;
+  color: #1a1a1a;
+  resize: none;
+  min-height: 60px;
+  font-family: inherit;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #0086bd;
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.tableHeader {
+  display: grid;
+  padding: 12px 16px;
+  font-size: 12px;
+  color: #9c9c9c;
+  border-bottom: 1px solid #d9d9d9;
+  background: #f8f9fa;
+}
+
+.tableRow {
+  display: grid;
+  padding: 12px 16px;
+  font-size: 12px;
+  align-items: center;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.tableRowAlt {
+  background: #f4f4f4;
+}
+
+.summarySection {
+  padding: 16px;
+  background: #f9f9f9;
+  border-top: 1px solid #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summaryLabel {
+  font-size: 14px;
+  color: #9c9c9c;
+}
+
+.summaryValue {
+  font-size: 14px;
+  color: #1a1a1a;
+}
+
+.summaryLabelTotal {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a1a;
+  padding-top: 8px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.summaryValueTotal {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.actionBar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 999px;
+  background: #0086bd;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.primaryButton:hover {
+  background: #006da3;
+}
+
+.ghostButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border: 1px solid #d9d9d9;
+  border-radius: 999px;
+  background: #f4f4f4;
+  color: #1a1a1a;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.ghostButton:hover {
+  background: #e0e0e0;
+}
+
+@media (max-width: 760px) {
+  .detailHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .actionBar {
+    flex-direction: column;
+  }
+
+  .primaryButton,
+  .ghostButton {
+    width: 100%;
+  }
+}

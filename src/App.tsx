@@ -7,7 +7,11 @@ import PemohonLayout from './layouts/PemohonLayout';
 import LoginPage from './pages/LoginPage/LoginPage';
 import AdminDashboard from './pages/admin/AdminDashboard/AdminDashboard';
 import AdminLpbj from './pages/admin/AdminLpbj/AdminLpbj';
+import EditLpbj from './pages/admin/EditLpbj/EditLpbj';
 import QuotationPage from './pages/admin/placeholders/QuotationPage';
+import QuotationDetail from './pages/admin/QuotationDetail/QuotationDetail';
+import CreateQuotation from './pages/admin/CreateQuotation/CreateQuotation';
+import CreatePO from './pages/admin/CreatePO/CreatePO';
 import PurchasePage from './pages/admin/placeholders/PurchasePage';
 import AdminHistoryPage from './pages/admin/placeholders/AdminHistoryPage';
 import UsersPage from './pages/admin/placeholders/UsersPage';
@@ -38,7 +42,12 @@ function App() {
             <Route index element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="lpbj" element={<AdminLpbj />} />
+            <Route path="lpbj/edit/:id" element={<EditLpbj />} />
             <Route path="quotation" element={<QuotationPage />} />
+            <Route path="quotation/view/:id" element={<QuotationDetail />} />
+            <Route path="quotation/create" element={<CreateQuotation />} />
+            <Route path="quotation/edit/:id" element={<CreateQuotation />} />
+            <Route path="quotation/create-po/:id" element={<CreatePO />} />
             <Route path="purchase" element={<PurchasePage />} />
             <Route path="history" element={<AdminHistoryPage />} />
             <Route path="users" element={<UsersPage />} />

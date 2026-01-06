@@ -1,5 +1,6 @@
 import type { FC, ReactNode } from 'react';
 import { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './AdminLpbj.module.css';
 
 type LpbjStatus = 'draft' | 'approved';
@@ -97,6 +98,7 @@ const itemColumns: Column[] = [
 ];
 
 const AdminLpbj: FC = () => {
+  const navigate = useNavigate();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [selectedApprovers, setSelectedApprovers] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -125,6 +127,10 @@ const AdminLpbj: FC = () => {
     setSelectedId(null);
     setIsModalOpen(false);
     setIsCreating(false);
+  };
+
+  const handleEditLpbj = (id: string) => {
+    navigate(`/admin/lpbj/edit/${id}`);
   };
 
   if (isCreating) {
@@ -184,8 +190,20 @@ const AdminLpbj: FC = () => {
                   className={styles.iconButton}
                   onClick={(event) => {
                     event.stopPropagation();
+                    handleEditLpbj(row.id);
+                  }}
+                  title="Edit"
+                >
+                  <EditIcon />
+                </button>
+                <button
+                  type="button"
+                  className={styles.iconButton}
+                  onClick={(event) => {
+                    event.stopPropagation();
                     setSelectedId(row.id);
                   }}
+                  title="View"
                 >
                   <EyeIcon />
                 </button>
@@ -194,10 +212,10 @@ const AdminLpbj: FC = () => {
                   className={styles.iconButton}
                   onClick={(event) => {
                     event.stopPropagation();
-                    if (confirm('Apakah Anda yakin ingin menghapus LPBJ ini?')) {
-                      alert('LPBJ berhasil dihapus (dummy)');
-                    }
+                    // Remove row without confirmation
+                    console.log('Delete LPBJ:', row.id);
                   }}
+                  title="Delete"
                 >
                   <TrashIcon />
                 </button>
@@ -956,7 +974,7 @@ const CreateLpbjForm: FC<{ onBack: () => void }> = ({ onBack }) => {
 
       {editingItemId ? (
         <div className={styles.modalOverlay}>
-          <div className={styles.modal}>
+          <div className={`${styles.modal} ${styles.modalLarge}`}>
             <div className={styles.modalHeader}>
               <div>
                 <h3 className={styles.modalTitle}>Edit Item</h3>
@@ -971,7 +989,6 @@ const CreateLpbjForm: FC<{ onBack: () => void }> = ({ onBack }) => {
               </button>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              {/* Same form fields as above */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 <div className={styles.infoBlock}>
                   <span className={styles.infoLabel}>Deskripsi</span>
@@ -991,15 +1008,183 @@ const CreateLpbjForm: FC<{ onBack: () => void }> = ({ onBack }) => {
                   <textarea
                     className={styles.infoValue}
                     defaultValue="Laptop Lenovo V14"
-                    rows={3}
+                    rows={2}
                     style={{
                       border: '1px solid #d9d9d9',
                       borderRadius: '4px',
                       padding: '4px 8px',
                       width: '100%',
                       resize: 'none',
+                      minHeight: '50px',
                     }}
                   />
+                </div>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
+                <div className={styles.infoBlock}>
+                  <span className={styles.infoLabel}>Qty</span>
+                  <input
+                    className={styles.infoValue}
+                    defaultValue="1"
+                    style={{
+                      border: '1px solid #d9d9d9',
+                      borderRadius: '4px',
+                      padding: '4px 8px',
+                      width: '100%',
+                    }}
+                  />
+                </div>
+                <div className={styles.infoBlock}>
+                  <span className={styles.infoLabel}>Article</span>
+                  <input
+                    className={styles.infoValue}
+                    defaultValue=""
+                    style={{
+                      border: '1px solid #d9d9d9',
+                      borderRadius: '4px',
+                      padding: '4px 8px',
+                      width: '100%',
+                    }}
+                  />
+                </div>
+                <div className={styles.infoBlock}>
+                  <span className={styles.infoLabel}>Store</span>
+                  <input
+                    className={styles.infoValue}
+                    defaultValue="HO"
+                    style={{
+                      border: '1px solid #d9d9d9',
+                      borderRadius: '4px',
+                      padding: '4px 8px',
+                      width: '100%',
+                    }}
+                  />
+                </div>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
+                <div className={styles.infoBlock}>
+                  <span className={styles.infoLabel}>G/L</span>
+                  <input
+                    className={styles.infoValue}
+                    defaultValue=""
+                    style={{
+                      border: '1px solid #d9d9d9',
+                      borderRadius: '4px',
+                      padding: '4px 8px',
+                      width: '100%',
+                    }}
+                  />
+                </div>
+                <div className={styles.infoBlock}>
+                  <span className={styles.infoLabel}>Cost Center</span>
+                  <input
+                    className={styles.infoValue}
+                    defaultValue=""
+                    style={{
+                      border: '1px solid #d9d9d9',
+                      borderRadius: '4px',
+                      padding: '4px 8px',
+                      width: '100%',
+                    }}
+                  />
+                </div>
+                <div className={styles.infoBlock}>
+                  <span className={styles.infoLabel}>Order</span>
+                  <input
+                    className={styles.infoValue}
+                    defaultValue=""
+                    style={{
+                      border: '1px solid #d9d9d9',
+                      borderRadius: '4px',
+                      padding: '4px 8px',
+                      width: '100%',
+                    }}
+                  />
+                </div>
+              </div>
+              {/* New pricing fields */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
+                <div className={styles.infoBlock}>
+                  <span className={styles.infoLabel}>Unit</span>
+                  <input
+                    className={styles.infoValue}
+                    defaultValue="pcs"
+                    style={{
+                      border: '1px solid #d9d9d9',
+                      borderRadius: '4px',
+                      padding: '4px 8px',
+                      width: '100%',
+                    }}
+                  />
+                </div>
+                <div className={styles.infoBlock}>
+                  <span className={styles.infoLabel}>Unit Price (Rp)</span>
+                  <input
+                    className={styles.infoValue}
+                    defaultValue="10000000"
+                    style={{
+                      border: '1px solid #d9d9d9',
+                      borderRadius: '4px',
+                      padding: '4px 8px',
+                      width: '100%',
+                    }}
+                  />
+                </div>
+                <div className={styles.infoBlock}>
+                  <span className={styles.infoLabel}>PPN (%)</span>
+                  <input
+                    className={styles.infoValue}
+                    defaultValue="11"
+                    style={{
+                      border: '1px solid #d9d9d9',
+                      borderRadius: '4px',
+                      padding: '4px 8px',
+                      width: '100%',
+                    }}
+                  />
+                </div>
+              </div>
+              <div className={styles.infoBlock} style={{ gridColumn: '1 / -1' }}>
+                <span className={styles.infoLabel}>Remarks</span>
+                <textarea
+                  className={styles.infoValue}
+                  defaultValue=""
+                  rows={2}
+                  style={{
+                    border: '1px solid #d9d9d9',
+                    borderRadius: '4px',
+                    padding: '4px 8px',
+                    width: '100%',
+                    resize: 'none',
+                    minHeight: '50px',
+                  }}
+                />
+              </div>
+              {/* Summary Section */}
+              <div style={{
+                borderTop: '1px solid #d9d9d9',
+                paddingTop: '12px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '8px',
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ fontSize: '14px', color: '#9c9c9c' }}>Subtotal</span>
+                  <span style={{ fontSize: '14px', color: '#1a1a1a' }}>Rp 10.000.000</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ fontSize: '14px', color: '#9c9c9c' }}>PPN (11%)</span>
+                  <span style={{ fontSize: '14px', color: '#1a1a1a' }}>Rp 1.100.000</span>
+                </div>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  borderTop: '1px solid #e0e0e0',
+                  paddingTop: '8px',
+                  marginTop: '4px',
+                }}>
+                  <span style={{ fontSize: '16px', fontWeight: 500, color: '#1a1a1a' }}>Grand Total</span>
+                  <span style={{ fontSize: '18px', fontWeight: 600, color: '#1a1a1a' }}>Rp 11.100.000</span>
                 </div>
               </div>
             </div>

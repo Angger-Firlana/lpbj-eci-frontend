@@ -12,7 +12,9 @@
       "Bash(copy srccomponentsPemohonLpbj*.* srcpagespemohonPemohonLpbj)",
       "Bash(copy srccomponentsHistory*.* srcpagespemohonHistory)",
       "Bash(copy srccomponentsAccountSetting*.* srcpagespemohonAccountSetting)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(tree:*)",
+      "Bash(cat:*)"
     ]
   }
 }

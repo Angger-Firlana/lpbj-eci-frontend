@@ -312,12 +312,69 @@ const ItemFormFields: FC<{ values: ItemFormValues }> = ({ values }) => (
       </Field>
     </div>
 
+    <div className={styles.formRow}>
+      <Field label="Unit">
+        <input
+          className={`${styles.input} ${styles.inputOutline}`}
+          defaultValue="pcs"
+        />
+      </Field>
+      <Field label="Unit Price (Rp)">
+        <input
+          className={`${styles.input} ${styles.inputOutline}`}
+          defaultValue="10000000"
+        />
+      </Field>
+      <Field label="PPN (%)">
+        <input
+          className={`${styles.input} ${styles.inputOutline}`}
+          defaultValue="11"
+        />
+      </Field>
+    </div>
+
+    <Field label="Remarks">
+      <textarea
+        className={`${styles.textarea} ${styles.textareaTall}`}
+        defaultValue=""
+        rows={2}
+      />
+    </Field>
+
     <Field label="Gambar Item">
       <div className={styles.uploadBox}>
         <UploadIcon className={styles.uploadIcon} />
         <span>Upload Gambar Item (Opsional)</span>
       </div>
     </Field>
+
+    {/* Summary Section */}
+    <div style={{
+      borderTop: '1px solid #d9d9d9',
+      paddingTop: '12px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '8px',
+    }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <span style={{ fontSize: '14px', color: '#9c9c9c' }}>Subtotal</span>
+        <span style={{ fontSize: '14px', color: '#1a1a1a' }}>Rp 10.000.000</span>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <span style={{ fontSize: '14px', color: '#9c9c9c' }}>PPN (11%)</span>
+        <span style={{ fontSize: '14px', color: '#1a1a1a' }}>Rp 1.100.000</span>
+      </div>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        borderTop: '1px solid #e0e0e0',
+        paddingTop: '8px',
+        marginTop: '4px',
+      }}>
+        <span style={{ fontSize: '16px', fontWeight: 500, color: '#1a1a1a' }}>Grand Total</span>
+        <span style={{ fontSize: '18px', fontWeight: 600, color: '#1a1a1a' }}>Rp 11.100.000</span>
+      </div>
+    </div>
   </div>
 );
 
