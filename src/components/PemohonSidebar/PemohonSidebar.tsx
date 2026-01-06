@@ -1,23 +1,19 @@
 import type { FC } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './PemohonSidebar.module.css';
 
-type MenuItemId = 'dashboard' | 'lpbj' | 'history';
-
 interface PemohonSidebarProps {
-  activeItem?: MenuItemId | null;
-  onNavigate?: (item: MenuItemId) => void;
   onLogout?: () => void;
 }
 
-const PemohonSidebar: FC<PemohonSidebarProps> = ({
-  activeItem = 'dashboard',
-  onNavigate,
-  onLogout,
-}) => {
-  const menuItems: { id: MenuItemId; label: string; icon: string }[] = [
-    { id: 'dashboard', label: 'Dashboard', icon: 'dashboard' },
-    { id: 'lpbj', label: 'LPBJ', icon: 'lpbj' },
-    { id: 'history', label: 'History', icon: 'history' },
+const PemohonSidebar: FC<PemohonSidebarProps> = ({ onLogout }) => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const menuItems: { path: string; label: string; icon: string }[] = [
+    { path: '/pemohon/dashboard', label: 'Dashboard', icon: 'dashboard' },
+    { path: '/pemohon/lpbj', label: 'LPBJ', icon: 'lpbj' },
+    { path: '/pemohon/history', label: 'History', icon: 'history' },
   ];
 
   return (
@@ -33,18 +29,17 @@ const PemohonSidebar: FC<PemohonSidebarProps> = ({
 
       <nav className={styles.nav}>
         {menuItems.map((item) => (
-          <button
-            key={item.label}
-            type="button"
+          <Link
+            key={item.path}
+            to={item.path}
             className={`${styles.menuItem} ${
-              item.id === activeItem ? styles.active : ''
+              currentPath === item.path ? styles.active : ''
             }`}
-            onClick={() => onNavigate?.(item.id)}
-            aria-current={item.id === activeItem ? 'page' : undefined}
+            aria-current={currentPath === item.path ? 'page' : undefined}
           >
             <span className={styles.menuIcon}>{getIcon(item.icon)}</span>
             <span className={styles.menuLabel}>{item.label}</span>
-          </button>
+          </Link>
         ))}
       </nav>
 

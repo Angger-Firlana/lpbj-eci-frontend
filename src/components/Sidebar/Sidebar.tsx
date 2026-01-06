@@ -1,34 +1,23 @@
 import type { FC } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Sidebar.module.css';
 
-type AdminMenuId =
-  | 'dashboard'
-  | 'lpbj'
-  | 'quotation'
-  | 'purchase'
-  | 'history'
-  | 'user'
-  | 'atasan';
-
 interface SidebarProps {
-  activeItem?: AdminMenuId;
-  onNavigate?: (item: AdminMenuId) => void;
   onLogout?: () => void;
 }
 
-const Sidebar: FC<SidebarProps> = ({
-  activeItem = 'dashboard',
-  onNavigate,
-  onLogout,
-}) => {
-  const menuItems: { id: AdminMenuId; label: string; icon: string }[] = [
-    { id: 'dashboard', label: 'Dashboard', icon: 'dashboard' },
-    { id: 'lpbj', label: 'LPBJ', icon: 'lpbj' },
-    { id: 'quotation', label: 'Quotation', icon: 'quotation' },
-    { id: 'purchase', label: 'Purchese Order', icon: 'purchase' },
-    { id: 'history', label: 'History', icon: 'history' },
-    { id: 'user', label: 'User Manage', icon: 'user' },
-    { id: 'atasan', label: 'Atasan Manage', icon: 'atasan' },
+const Sidebar: FC<SidebarProps> = ({ onLogout }) => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const menuItems: { path: string; label: string; icon: string }[] = [
+    { path: '/admin/dashboard', label: 'Dashboard', icon: 'dashboard' },
+    { path: '/admin/lpbj', label: 'LPBJ', icon: 'lpbj' },
+    { path: '/admin/quotation', label: 'Quotation', icon: 'quotation' },
+    { path: '/admin/purchase', label: 'Purchase Order', icon: 'purchase' },
+    { path: '/admin/history', label: 'History', icon: 'history' },
+    { path: '/admin/users', label: 'User Manage', icon: 'user' },
+    { path: '/admin/atasan', label: 'Atasan Manage', icon: 'atasan' },
   ];
 
   return (
@@ -43,18 +32,17 @@ const Sidebar: FC<SidebarProps> = ({
 
       <nav className={styles.nav}>
         {menuItems.map((item) => (
-          <button
-            key={item.id}
-            type="button"
+          <Link
+            key={item.path}
+            to={item.path}
             className={`${styles.menuItem} ${
-              item.id === activeItem ? styles.active : ''
+              currentPath === item.path ? styles.active : ''
             }`}
-            onClick={() => onNavigate?.(item.id)}
-            aria-current={item.id === activeItem ? 'page' : undefined}
+            aria-current={currentPath === item.path ? 'page' : undefined}
           >
             <span className={styles.menuIcon}>{getIcon(item.icon)}</span>
             <span className={styles.menuLabel}>{item.label}</span>
-          </button>
+          </Link>
         ))}
       </nav>
 

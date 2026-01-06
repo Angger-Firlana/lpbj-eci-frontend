@@ -188,3 +188,18 @@ Atasan | yes | no | yes | no | no
 ## Frontend UI notes
 - Admin LPBJ screens include list view, detail view, approver selection panel, and approval status panel (UI only).
 - Admin can open an "Atur Apporver" modal to pick approvers (mock data only).
+
+## Navigation flow (frontend)
+Login -> Role selection -> Dashboard
+- Admin login -> /admin/dashboard
+- Pemohon login -> /pemohon/dashboard
+- Atasan login -> Not yet implemented (future)
+
+Logout -> /login (clears localStorage)
+
+URL-based navigation:
+- Browser back/forward supported
+- Direct URL access checks auth state
+- Unauthorized access redirects to /login
+- URLs persist across page reloads
+- Auth state stored in localStorage (keys: lpbj_auth_token, lpbj_user_role)

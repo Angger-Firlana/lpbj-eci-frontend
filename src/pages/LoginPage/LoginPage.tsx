@@ -1,19 +1,16 @@
 import type { FC, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 import inputIcons from '../../assets/icons/Input-Icons.svg';
 import styles from './LoginPage.module.css';
 
-interface LoginPageProps {
-  onSignIn?: () => void;
-  onSignInRole?: (role: 'pemohon' | 'admin') => void;
-}
+const LoginPage: FC = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-const LoginPage: FC<LoginPageProps> = ({ onSignIn, onSignInRole }) => {
   const handleRoleSignIn = (role: 'pemohon' | 'admin') => {
-    if (onSignInRole) {
-      onSignInRole(role);
-      return;
-    }
-    onSignIn?.();
+    login(role);
+    navigate(role === 'admin' ? '/admin/dashboard' : '/pemohon/dashboard');
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {

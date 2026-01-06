@@ -1,20 +1,20 @@
 import type { FC, ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './AccountSetting.module.css';
 
-interface AccountSettingProps {
-  onBack?: () => void;
-}
+const AccountSetting: FC = () => {
+  const navigate = useNavigate();
 
-const AccountSetting: FC<AccountSettingProps> = ({ onBack }) => (
-  <div className={styles.wrapper}>
-    <button
-      type="button"
-      className={styles.backButton}
-      onClick={onBack}
-      aria-label="Kembali"
-    >
-      <ArrowLeftIcon className={styles.backIcon} />
-    </button>
+  return (
+    <div className={styles.wrapper}>
+      <button
+        type="button"
+        className={styles.backButton}
+        onClick={() => navigate('/pemohon/dashboard')}
+        aria-label="Kembali"
+      >
+        <ArrowLeftIcon className={styles.backIcon} />
+      </button>
 
     <div className={styles.grid}>
       <section className={`${styles.card} ${styles.profileCard}`}>
@@ -102,7 +102,8 @@ const AccountSetting: FC<AccountSettingProps> = ({ onBack }) => (
       </div>
     </div>
   </div>
-);
+  );
+};
 
 const Field: FC<{ label: string; full?: boolean; children: ReactNode }> = ({
   label,

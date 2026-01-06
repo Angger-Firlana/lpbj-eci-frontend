@@ -1,0 +1,19 @@
+.page {
+  display: flex;
+  min-height: 100vh;
+  background: #fdfdfd;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 226px;
+  min-width: 0;
+}
+
+.content {
+  flex: 1;
+  padding: 28px 32px 32px;
+  overflow-y: auto;
+}
