@@ -1,73 +1,292 @@
-# React + TypeScript + Vite
+# LPBJ/IPBJ Frontend - Build & Deployment Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
+Frontend aplikasi LPBJ/IPBJ menggunakan React + TypeScript + Vite untuk mengelola permintaan barang/jasa dengan sistem approval.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Prerequisites
+Pastikan sudah terinstall:
+- **Node.js** (v16 atau lebih baru) - [Download](https://nodejs.org/)
+- **npm** atau **yarn**
+- **Git**
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Development Setup
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Install Dependencies
+```bash
+npm install
+# atau
+yarn install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. Run Development Server
+```bash
+npm run dev
+# atau
+yarn dev
 ```
+Akses aplikasi di: `http://localhost:5173`
+
+---
+
+## Build untuk Production
+
+### Build Web App
+```bash
+npm run build
+# atau
+yarn build
+```
+
+Output akan ada di folder `dist/`
+
+### Preview Production Build
+```bash
+npm run preview
+# atau
+yarn preview
+```
+
+---
+
+## Deploy ke Mobile (APK)
+
+**Catatan**: Project ini adalah **React Web App**, bukan React Native. Untuk membuat APK, ada beberapa opsi:
+
+### Opsi 1: Capacitor (Recommended)
+
+Capacitor memungkinkan web app dijalankan sebagai native mobile app.
+
+#### Install Capacitor
+```bash
+npm install @capacitor/core @capacitor/cli
+npm install @capacitor/android
+npx cap init
+```
+
+Saat init, masukkan:
+- **App name**: LPBJ ECI
+- **App ID**: com.eci.lpbj
+- **Web directory**: dist
+
+#### Setup Android
+```bash
+npx cap add android
+```
+
+#### Build dan Sync
+```bash
+# Build web app dulu
+npm run build
+
+# Sync ke Android
+npx cap sync
+```
+
+#### Generate APK
+```bash
+# Buka Android Studio
+npx cap open android
+```
+
+Di Android Studio:
+1. Tunggu Gradle sync selesai
+2. Pilih **Build** > **Build Bundle(s) / APK(s)** > **Build APK(s)**
+3. APK ada di: `android/app/build/outputs/apk/debug/app-debug.apk`
+
+#### Update APK di HP
+1. Copy `app-debug.apk` ke HP via USB/email/cloud
+2. Install APK (enable "Install from unknown sources" jika perlu)
+3. Buka aplikasi LPBJ ECI
+
+---
+
+### Opsi 2: Progressive Web App (PWA)
+
+Akses via browser mobile dengan install icon di home screen.
+
+#### Setup PWA
+1. Build web app: `npm run build`
+2. Deploy ke hosting (Vercel, Netlify, Firebase Hosting, dll)
+3. Di HP, buka URL di browser
+4. Tap menu browser > "Add to Home Screen"
+
+---
+
+### Opsi 3: Akses via Browser Local Network
+
+Untuk testing cepat tanpa build APK:
+
+```bash
+# Start dev server
+npm run dev -- --host
+```
+
+Aplikasi akan accessible di network local:
+```
+Local:   http://localhost:5173
+Network: http://192.168.x.x:5173
+```
+
+Buka `http://192.168.x.x:5173` di browser HP (pastikan HP dan laptop di WiFi yang sama)
+
+---
+
+## Quick Update Workflow
+
+### Jika sudah setup Capacitor:
+```bash
+# 1. Pull latest changes
+git pull
+
+# 2. Install dependencies (jika ada perubahan package.json)
+npm install
+
+# 3. Build web app
+npm run build
+
+# 4. Sync ke Android
+npx cap sync
+
+# 5. Open di Android Studio
+npx cap open android
+
+# 6. Build APK baru
+# Build > Build APK
+
+# 7. Transfer & install APK baru di HP
+```
+
+### Jika pakai browser (opsi 3):
+```bash
+# 1. Pull latest changes
+git pull
+
+# 2. Install dependencies (jika ada perubahan)
+npm install
+
+# 3. Start dev server
+npm run dev -- --host
+
+# 4. Refresh browser di HP
+```
+
+---
+
+## Project Structure
+```
+lpbj-eci-frontend/
+├── src/
+│   ├── components/
+│   │   ├── AdminLpbj/       # Admin LPBJ screens
+│   │   ├── PemohonLpbj/     # Pemohon LPBJ form
+│   │   ├── Dashboard/       # Dashboard components
+│   │   ├── Header/          # Top navigation
+│   │   └── Sidebar/         # Side navigation
+│   ├── App.tsx              # Main app & routing
+│   └── main.tsx             # Entry point
+├── public/                  # Static assets
+├── dist/                    # Production build output
+└── package.json
+```
+
+---
+
+## Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
+
+---
+
+## Roles & Access
+
+### Pemohon
+- Create & submit IPBJ/LPBJ
+- View own IPBJ only
+- Cannot approve
+
+### Admin
+- View all IPBJ/LPBJ
+- Create IPBJ, Quotation, PO
+- Cannot approve
+- Manage approvers
+
+### Atasan (Approver)
+- View IPBJ/Quotation
+- Approve with token
+- Cannot create/edit
+
+---
+
+## Flow Overview
+```
+Pemohon/Admin → Create LPBJ (DRAFT)
+              → Submit LPBJ
+              → WAITING_APPROVAL_IPBJ
+              → 4x Approval (Atasan)
+              → APPROVED
+              → Admin creates Quotation
+              → Submit Quotation
+              → WAITING_APPROVAL_QUOTATION
+              → 4x Approval (Atasan)
+              → APPROVED
+              → Admin creates PO
+              → FINAL
+```
+
+---
+
+## Troubleshooting
+
+### Build Errors
+```bash
+# Clear cache & reinstall
+rm -rf node_modules package-lock.json
+npm install
+```
+
+### Capacitor Sync Issues
+```bash
+# Clean & rebuild
+npx cap sync
+npx cap copy
+```
+
+### Android Studio Gradle Error
+- Update Android Studio ke versi terbaru
+- Update Gradle wrapper di `android/gradle/wrapper/gradle-wrapper.properties`
+- Sync Project with Gradle Files
+
+### Port already in use
+```bash
+# Ganti port
+npm run dev -- --port 3000
+```
+
+---
+
+## Documentation
+- **FLOW.md** - Business flow & ERD summary
+- **AGENTS.md** - Implementation status & context
+
+---
+
+## Tech Stack
+- **React 18** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool
+- **CSS Modules** - Styling
+- **ESLint** - Code linting
+
+---
+
+## Support
+Untuk issue atau pertanyaan, silakan buat issue di repository ini.

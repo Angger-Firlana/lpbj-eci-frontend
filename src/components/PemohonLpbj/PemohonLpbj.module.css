@@ -1,0 +1,336 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cardBody {
+  padding: 18px 20px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.cardTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.cardIcon {
+  width: 20px;
+  height: 24px;
+  color: #1a1a1a;
+}
+
+.addButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: #d9d9d9;
+  border-radius: 10px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  background: #cfcfcf;
+}
+
+.addIcon {
+  width: 10px;
+  height: 10px;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldFull {
+  grid-column: 1 / -1;
+}
+
+.label {
+  font-size: 12px;
+  color: #9c9c9c;
+}
+
+.input {
+  height: 28px;
+  border-radius: 8px;
+  background: #eaeaea;
+  border: 1px solid transparent;
+  padding: 0 10px;
+  font-size: 12px;
+  color: #1a1a1a;
+}
+
+.inputOutline {
+  background: #f4f4f4;
+  border-color: #9c9c9c;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #bdbdbd;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon .input {
+  padding-right: 30px;
+}
+
+.calendarIcon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  color: #9c9c9c;
+}
+
+.inputDisplay {
+  min-height: 28px;
+  border-radius: 8px;
+  background: #eaeaea;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.inputMuted {
+  color: #9c9c9c;
+}
+
+.inputStrong {
+  color: #1a1a1a;
+}
+
+.inputMutedText {
+  color: #9c9c9c;
+}
+
+.formGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.textarea {
+  border-radius: 8px;
+  background: #eaeaea;
+  border: 1px solid transparent;
+  padding: 8px 10px;
+  font-size: 12px;
+  color: #1a1a1a;
+  resize: none;
+  min-height: 34px;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #bdbdbd;
+}
+
+.textareaTall {
+  min-height: 52px;
+}
+
+.uploadBox {
+  border-radius: 8px;
+  border: 1px dashed #9c9c9c;
+  background: #f4f4f4;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.uploadIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.tableHeader {
+  display: grid;
+  gap: 12px;
+  font-size: 12px;
+  color: #9c9c9c;
+  padding: 10px 6px;
+  border-bottom: 1px solid #d9d9d9;
+  min-width: 900px;
+}
+
+.tableRow {
+  display: grid;
+  gap: 12px;
+  padding: 10px 6px;
+  font-size: 12px;
+  min-width: 900px;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+  min-height: 36px;
+}
+
+.tableRowAlt {
+  background: #f4f4f4;
+}
+
+.actionGroup {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.actionButton {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: #1a1a1a;
+}
+
+.actionButton:hover {
+  color: #0086bd;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 200;
+}
+
+.modal {
+  width: min(720px, 100%);
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.closeButton {
+  border: none;
+  background: #f4f4f4;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.primaryButton {
+  background: #0086bd;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.ghostButton {
+  background: #f4f4f4;
+  color: #1a1a1a;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+  .infoGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .formRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

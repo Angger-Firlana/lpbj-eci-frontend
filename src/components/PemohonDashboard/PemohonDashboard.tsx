@@ -1,11 +1,15 @@
 import type { FC, ReactNode } from 'react';
 import { useState } from 'react';
 import Header from '../Header/Header';
+import AccountSetting from '../AccountSetting/AccountSetting';
+import History from '../History/History';
+import PemohonLpbj from '../PemohonLpbj/PemohonLpbj';
 import PemohonSidebar from '../PemohonSidebar/PemohonSidebar';
 import styles from './PemohonDashboard.module.css';
 
 type LpbjStatus = 'final' | 'proses';
 type DetailTab = 'lpbj' | 'quotation' | 'po';
+type PemohonSection = 'dashboard' | 'lpbj' | 'history' | 'account';
 
 interface LpbjItem {
   id: string;
@@ -33,6 +37,37 @@ const lpbjItems: LpbjItem[] = [
     code: 'LPBJ/no lpbj',
     title: 'LPBJ - Peminjaman Laptop Lenovo V14 100 biji',
     status: 'proses',
+    date: '01/01/2026',
+  },
+];
+
+const historyItems: LpbjItem[] = [
+  {
+    id: 'HIST-001',
+    code: 'LPBJ/no lpbj',
+    title: 'LPBJ - Peminjaman Laptop Lenovo V14 100 biji',
+    status: 'final',
+    date: '01/01/2026',
+  },
+  {
+    id: 'HIST-002',
+    code: 'LPBJ/no lpbj',
+    title: 'LPBJ - Peminjaman Laptop Lenovo V14 100 biji',
+    status: 'final',
+    date: '01/01/2026',
+  },
+  {
+    id: 'HIST-003',
+    code: 'LPBJ/no lpbj',
+    title: 'LPBJ - Peminjaman Laptop Lenovo V14 100 biji',
+    status: 'final',
+    date: '01/01/2026',
+  },
+  {
+    id: 'HIST-004',
+    code: 'LPBJ/no lpbj',
+    title: 'LPBJ - Peminjaman Laptop Lenovo V14 100 biji',
+    status: 'final',
     date: '01/01/2026',
   },
 ];
@@ -99,8 +134,10 @@ interface PemohonDashboardProps {
 }
 
 const PemohonDashboard: FC<PemohonDashboardProps> = ({ onLogout }) => {
-  const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(null);    
   const [activeTab, setActiveTab] = useState<DetailTab>('lpbj');
+  const [activeSection, setActiveSection] =
+    useState<PemohonSection>('dashboard');
   const selectedItem =
     lpbjItems.find((item) => item.id === selectedItemId) ?? null;
 
@@ -109,23 +146,51 @@ const PemohonDashboard: FC<PemohonDashboardProps> = ({ onLogout }) => {
     setActiveTab('lpbj');
   };
 
+  const handleNavigate = (section: PemohonSection) => {
+    setActiveSection(section);
+    if (section !== 'dashboard') {
+      setSelectedItemId(null);
+    }
+  };
+
+  const handleOpenAccount = () => {
+    setActiveSection('account');
+    setSelectedItemId(null);
+  };
+
+  const content =
+    activeSection === 'dashboard' ? (
+      !selectedItem ? (
+        <DashboardHome items={lpbjItems} onSelect={handleSelectItem} />
+      ) : (
+        <DetailView
+          item={selectedItem}
+          tab={activeTab}
+          onBack={() => setSelectedItemId(null)}
+          onTabChange={setActiveTab}
+        />
+      )
+    ) : activeSection === 'lpbj' ? (
+      <PemohonLpbj />
+    ) : activeSection === 'history' ? (
+      <History items={historyItems} />
+    ) : (
+      <AccountSetting onBack={() => setActiveSection('dashboard')} />
+    );
+
+  const activeSidebarItem =
+    activeSection === 'account' ? null : activeSection;
+
   return (
     <div className={styles.page}>
-      <PemohonSidebar onLogout={onLogout} />
+      <PemohonSidebar
+        activeItem={activeSidebarItem}
+        onNavigate={handleNavigate}
+        onLogout={onLogout}
+      />
       <div className={styles.main}>
-        <Header />
-        <div className={styles.content}>
-          {!selectedItem ? (
-            <DashboardHome items={lpbjItems} onSelect={handleSelectItem} />
-          ) : (
-            <DetailView
-              item={selectedItem}
-              tab={activeTab}
-              onBack={() => setSelectedItemId(null)}
-              onTabChange={setActiveTab}
-            />
-          )}
-        </div>
+        <Header onProfileClick={handleOpenAccount} />
+        <div className={styles.content}>{content}</div>
       </div>
     </div>
   );

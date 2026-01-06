@@ -31,6 +31,8 @@
 .nav {
   flex: 1;
   padding-top: 29px;
+  padding-left: 22px;
+  padding-right: 22px;
 }
 
 .menuItem {
@@ -42,17 +44,23 @@
   position: relative;
   height: 39px;
   color: black;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font: inherit;
 }
 
 .menuItem:hover {
   background: rgba(0, 134, 189, 0.1);
+  border-radius: 12px;
 }
 
-.menuItem.active {
+.menuItem.active,
+.active {
   background: #0086BD;
   border-radius: 12px;
-  margin: 0 22px;
-  padding: 8px 16px;
+  padding: 8px 18px;
   color: white;
 }
 
@@ -86,4 +94,8 @@
 
 .logoutContainer {
   padding: 12px 0;
+}
+
+.logoutButton {
+  width: 100%;
 }

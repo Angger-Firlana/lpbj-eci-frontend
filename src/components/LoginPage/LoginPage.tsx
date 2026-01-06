@@ -4,12 +4,21 @@ import styles from './LoginPage.module.css';
 
 interface LoginPageProps {
   onSignIn?: () => void;
+  onSignInRole?: (role: 'pemohon' | 'admin') => void;
 }
 
-const LoginPage: FC<LoginPageProps> = ({ onSignIn }) => {
+const LoginPage: FC<LoginPageProps> = ({ onSignIn, onSignInRole }) => {
+  const handleRoleSignIn = (role: 'pemohon' | 'admin') => {
+    if (onSignInRole) {
+      onSignInRole(role);
+      return;
+    }
+    onSignIn?.();
+  };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSignIn?.();
+    handleRoleSignIn('pemohon');
   };
 
   return (
@@ -80,6 +89,26 @@ const LoginPage: FC<LoginPageProps> = ({ onSignIn }) => {
           </button>
 
           <div className={styles.divider}></div>
+
+          <div className={styles.tempLogin}>
+            <span className={styles.tempTitle}>Temporary login</span>
+            <div className={styles.tempButtons}>
+              <button
+                type="button"
+                className={styles.tempButton}
+                onClick={() => handleRoleSignIn('pemohon')}
+              >
+                Pemohon
+              </button>
+              <button
+                type="button"
+                className={styles.tempButton}
+                onClick={() => handleRoleSignIn('admin')}
+              >
+                Admin
+              </button>
+            </div>
+          </div>
 
           <div className={styles.signupText}>
             <span>Dont have an account?</span>

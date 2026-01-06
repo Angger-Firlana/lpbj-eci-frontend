@@ -63,6 +63,19 @@
   cursor: pointer;
 }
 
+.profileButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+}
+
 .notificationBadge {
   width: 9px;
   height: 8px;
@@ -79,6 +92,26 @@
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profileName {
+  font-size: 15px;
+  color: #1a1a1a;
+  line-height: 22.5px;
+  letter-spacing: 0.3px;
+}
+
+.profileRole {
+  font-size: 12px;
+  color: #7d7d7d;
+  line-height: 18px;
+  letter-spacing: 0.3px;
 }
 
 .profileImage img {

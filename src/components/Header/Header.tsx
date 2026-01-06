@@ -1,7 +1,19 @@
 import type { FC } from 'react';
 import styles from './Header.module.css';
 
-const Header: FC = () => {
+interface HeaderProps {
+  onProfileClick?: () => void;
+  profileName?: string;
+  profileRole?: string;
+  profileImageSrc?: string;
+}
+
+const Header: FC<HeaderProps> = ({
+  onProfileClick,
+  profileName = 'Habibi Cholis El G',
+  profileRole = 'Pemohon',
+  profileImageSrc = '/profile-placeholder.jpg',
+}) => {
   return (
     <header className={styles.header}>
       <div className={styles.searchContainer}>
@@ -26,13 +38,25 @@ const Header: FC = () => {
           </svg>
           <div className={styles.notificationBadge}></div>
         </div>
-
-        <div className={styles.profileImage}>
-          <img src="/profile-placeholder.jpg" alt="Profile" />
-        </div>
+        <button
+          type="button"
+          className={styles.profileButton}
+          onClick={onProfileClick}
+          aria-label="Open account setting"
+        >
+          <div className={styles.profileInfo}>
+            <span className={styles.profileName}>{profileName}</span>
+            <span className={styles.profileRole}>{profileRole}</span>
+          </div>
+          <div className={styles.profileImage}>
+            <img src={profileImageSrc} alt="Profile" />
+          </div>
+        </button>
       </div>
     </header>
   );
 };
 
 export default Header;
+
+

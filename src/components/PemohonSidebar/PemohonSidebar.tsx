@@ -1,15 +1,23 @@
 import type { FC } from 'react';
 import styles from './PemohonSidebar.module.css';
 
+type MenuItemId = 'dashboard' | 'lpbj' | 'history';
+
 interface PemohonSidebarProps {
+  activeItem?: MenuItemId | null;
+  onNavigate?: (item: MenuItemId) => void;
   onLogout?: () => void;
 }
 
-const PemohonSidebar: FC<PemohonSidebarProps> = ({ onLogout }) => {
-  const menuItems = [
-    { label: 'Dashboard', icon: 'dashboard', active: true },
-    { label: 'LPBJ', icon: 'lpbj', active: false },
-    { label: 'History', icon: 'history', active: false },
+const PemohonSidebar: FC<PemohonSidebarProps> = ({
+  activeItem = 'dashboard',
+  onNavigate,
+  onLogout,
+}) => {
+  const menuItems: { id: MenuItemId; label: string; icon: string }[] = [
+    { id: 'dashboard', label: 'Dashboard', icon: 'dashboard' },
+    { id: 'lpbj', label: 'LPBJ', icon: 'lpbj' },
+    { id: 'history', label: 'History', icon: 'history' },
   ];
 
   return (
@@ -28,7 +36,11 @@ const PemohonSidebar: FC<PemohonSidebarProps> = ({ onLogout }) => {
           <button
             key={item.label}
             type="button"
-            className={`${styles.menuItem} ${item.active ? styles.active : ''}`}
+            className={`${styles.menuItem} ${
+              item.id === activeItem ? styles.active : ''
+            }`}
+            onClick={() => onNavigate?.(item.id)}
+            aria-current={item.id === activeItem ? 'page' : undefined}
           >
             <span className={styles.menuIcon}>{getIcon(item.icon)}</span>
             <span className={styles.menuLabel}>{item.label}</span>
