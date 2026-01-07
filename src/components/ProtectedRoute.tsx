@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 
 interface ProtectedRouteProps {
   children: ReactNode;
-  requiredRole?: 'pemohon' | 'admin';
+  requiredRole?: 'pemohon' | 'admin' | 'atasan';
 }
 
 export default function ProtectedRoute({ children, requiredRole }: ProtectedRouteProps) {
@@ -15,7 +15,9 @@ export default function ProtectedRoute({ children, requiredRole }: ProtectedRout
   }
 
   if (requiredRole && role !== requiredRole) {
-    const redirectPath = role === 'admin' ? '/admin/dashboard' : '/pemohon/dashboard';
+    let redirectPath = '/pemohon/dashboard';
+    if (role === 'admin') redirectPath = '/admin/dashboard';
+    if (role === 'atasan') redirectPath = '/atasan/dashboard';
     return <Navigate to={redirectPath} replace />;
   }
 

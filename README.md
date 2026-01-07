@@ -181,15 +181,38 @@ npm run dev -- --host
 lpbj-eci-frontend/
 ├── src/
 │   ├── components/
-│   │   ├── AdminLpbj/       # Admin LPBJ screens
-│   │   ├── PemohonLpbj/     # Pemohon LPBJ form
-│   │   ├── Dashboard/       # Dashboard components
-│   │   ├── Header/          # Top navigation
-│   │   └── Sidebar/         # Side navigation
-│   ├── App.tsx              # Main app & routing
-│   └── main.tsx             # Entry point
-├── public/                  # Static assets
-├── dist/                    # Production build output
+│   │   ├── Header/              # Top navigation bar
+│   │   ├── Sidebar/             # Admin sidebar
+│   │   ├── PemohonSidebar/      # Pemohon sidebar
+│   │   ├── AtasanSidebar/       # Atasan sidebar (new)
+│   │   ├── StatCard/            # Dashboard stat cards
+│   │   ├── TokenModal/          # Token approval modal (new)
+│   │   └── ProtectedRoute.tsx   # Route protection
+│   ├── contexts/
+│   │   └── AuthContext.tsx      # Auth state management
+│   ├── layouts/
+│   │   ├── AdminLayout.tsx      # Admin layout wrapper
+│   │   ├── PemohonLayout.tsx    # Pemohon layout wrapper
+│   │   └── AtasanLayout.tsx     # Atasan layout wrapper (new)
+│   ├── pages/
+│   │   ├── admin/               # Admin pages
+│   │   ├── pemohon/             # Pemohon pages
+│   │   ├── atasan/              # Atasan pages (new)
+│   │   │   ├── AtasanDashboard/
+│   │   │   ├── AtasanInbox/
+│   │   │   ├── LpbjDetail/
+│   │   │   ├── QuotationDetail/
+│   │   │   ├── AtasanHistory/
+│   │   │   ├── HistoryLpbjDetail/
+│   │   │   └── HistoryQuotationDetail/
+│   │   └── LoginPage/
+│   ├── App.tsx                  # Main app & routing
+│   └── main.tsx                 # Entry point
+├── public/                      # Static assets
+├── dist/                        # Production build output
+├── FLOW.md                      # Business flow documentation
+├── AGENTS.md                    # Implementation status
+├── README.md                    # This file
 └── package.json
 ```
 
@@ -212,17 +235,21 @@ lpbj-eci-frontend/
 - Create & submit IPBJ/LPBJ
 - View own IPBJ only
 - Cannot approve
+- **Status**: ✅ Fully implemented
 
 ### Admin
 - View all IPBJ/LPBJ
 - Create IPBJ, Quotation, PO
 - Cannot approve
 - Manage approvers
+- **Status**: ✅ Fully implemented
 
 ### Atasan (Approver)
-- View IPBJ/Quotation
-- Approve with token
+- View IPBJ/Quotation waiting for approval
+- Approve/Reject with token input
+- View approval history
 - Cannot create/edit
+- **Status**: ✅ Fully implemented (UI ready, backend pending)
 
 ---
 

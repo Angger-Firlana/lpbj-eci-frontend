@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 
-type UserRole = 'pemohon' | 'admin';
+type UserRole = 'pemohon' | 'admin' | 'atasan';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -22,7 +22,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const token = localStorage.getItem(AUTH_TOKEN_KEY);
     const savedRole = localStorage.getItem(USER_ROLE_KEY);
 
-    if (token === 'true' && (savedRole === 'pemohon' || savedRole === 'admin')) {
+    if (token === 'true' && (savedRole === 'pemohon' || savedRole === 'admin' || savedRole === 'atasan')) {
       setIsAuthenticated(true);
       setRole(savedRole);
     }

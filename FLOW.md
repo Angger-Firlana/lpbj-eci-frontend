@@ -193,7 +193,7 @@ Atasan | yes | no | yes | no | no
 Login -> Role selection -> Dashboard
 - Admin login -> /admin/dashboard
 - Pemohon login -> /pemohon/dashboard
-- Atasan login -> Not yet implemented (future)
+- Atasan login -> /atasan/dashboard (✅ Implemented)
 
 Logout -> /login (clears localStorage)
 
@@ -201,5 +201,14 @@ URL-based navigation:
 - Browser back/forward supported
 - Direct URL access checks auth state
 - Unauthorized access redirects to /login
+- Role-based route protection enforces pemohon/admin/atasan access
 - URLs persist across page reloads
 - Auth state stored in localStorage (keys: lpbj_auth_token, lpbj_user_role)
+
+Atasan navigation:
+- Dashboard -> View pending LPBJ/Quotation stats
+- Inbox -> LPBJ/Quotation tabs with approval queue
+- Inbox LPBJ item -> Detail view with Approve/Reject + Token modal
+- Inbox Quotation item -> Detail view with Approve/Reject + Token modal
+- History -> LPBJ/Quotation tabs with approved/rejected records
+- History item -> Detail view with approval status and PDF download

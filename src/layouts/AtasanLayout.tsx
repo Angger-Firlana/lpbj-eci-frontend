@@ -1,10 +1,10 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import Sidebar from '../components/Sidebar/Sidebar';
+import AtasanSidebar from '../components/AtasanSidebar/AtasanSidebar';
 import Header from '../components/Header/Header';
-import styles from './AdminLayout.module.css';
+import styles from './AtasanLayout.module.css';
 
-export default function AdminLayout() {
+export default function AtasanLayout() {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
@@ -14,12 +14,12 @@ export default function AdminLayout() {
   };
 
   const handleProfileClick = () => {
-    navigate('/admin/account');
+    navigate('/atasan/dashboard');
   };
 
   return (
     <div className={styles.page}>
-      <Sidebar onLogout={handleLogout} />
+      <AtasanSidebar onLogout={handleLogout} inboxCount={1} />
       <div className={styles.main}>
         <Header
           profileName="Fieco Alvanu Jansen"

@@ -1,0 +1,117 @@
+.sidebar {
+  width: 226px;
+  height: 100vh;
+  background: white;
+  border-right: 1px solid #E5E5E5;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+
+.sidebarTop {
+  height: var(--topbar-h);
+  min-height: var(--topbar-h);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #E5E5E5;
+  padding: 0 16px;
+}
+
+.logo {
+  max-height: calc(var(--topbar-h) - 16px);
+  width: auto;
+  object-fit: contain;
+}
+
+.nav {
+  flex: 1;
+  padding-top: 29px;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  position: relative;
+  height: 39px;
+  color: black;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  text-decoration: none;
+}
+
+.menuItem:hover {
+  background: rgba(0, 134, 189, 0.1);
+  border-radius: 12px;
+}
+
+.menuItem.active,
+.active {
+  background: #0086BD;
+  border-radius: 12px;
+  padding: 8px 18px;
+  color: white;
+}
+
+.menuIcon {
+  width: 19px;
+  height: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.menuIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.menuLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22.5px;
+  letter-spacing: 0.3px;
+}
+
+.badge {
+  margin-left: auto;
+  background: #FF0000;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.bottomDivider {
+  width: 100%;
+  height: 1px;
+  background: #D9D9D9;
+}
+
+.logoutContainer {
+  padding: 12px 22px;
+}
+
+.logoutButton {
+  width: 100%;
+}

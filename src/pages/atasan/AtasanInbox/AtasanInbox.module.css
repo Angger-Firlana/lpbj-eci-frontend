@@ -1,0 +1,141 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.tab {
+  padding: 12px 32px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #666;
+  background: #E5E5E5;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab:first-child {
+  border-radius: 8px 0 0 0;
+}
+
+.tab:last-child {
+  border-radius: 0 8px 0 0;
+}
+
+.tabActive {
+  background: white;
+  color: black;
+}
+
+.content {
+  background: white;
+  border-radius: 0 0 8px 8px;
+  padding: 24px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: black;
+  margin: 0 0 20px 0;
+}
+
+.tableContainer {
+  width: 100%;
+  min-height: 400px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead tr {
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.table th {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #9C9C9C;
+  text-align: left;
+  padding: 12px 8px;
+}
+
+.table td {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: black;
+  padding: 16px 8px;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.actionBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionBtn:hover {
+  opacity: 0.7;
+}
+
+.actionBtnApprove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionBtnApprove:hover {
+  opacity: 0.7;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  gap: 16px;
+}
+
+.emptyIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emptyText {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #666;
+  margin: 0;
+  text-align: center;
+}

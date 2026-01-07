@@ -10,7 +10,7 @@ Project context and current implementation status for the LPBJ / IPBJ frontend.
 - Uses React Router v6 for URL-based navigation with role-based protected routes.
 
 ## Implemented (UI)
-- Login page with temporary role buttons (Pemohon, Admin).
+- Login page with temporary role buttons (Pemohon, Admin, Atasan).
 - Pemohon dashboard: list, detail tabs (LPBJ / Quotation / PO), status panel.
 - Pemohon LPBJ form: info section, add item form, list item table.
 - LPBJ edit modal (dummy) reuses add item form layout.
@@ -19,18 +19,27 @@ Project context and current implementation status for the LPBJ / IPBJ frontend.
 - Admin dashboard stub (stats and sections).
 - Admin LPBJ screens: list view, detail view, approver selection, status panel.
 - Admin approver modal (Atur Apporver) for selecting approvers (UI only).
+- **Atasan (Approver) complete UI**:
+  - Dashboard with LPBJ/Quotation pending stats and empty states
+  - Inbox page with LPBJ/Quotation tabs showing approval queue
+  - LPBJ detail view with Approve/Reject buttons
+  - Quotation detail view with Approve/Reject buttons
+  - Token input modal with validation warning
+  - History page with LPBJ/Quotation tabs
+  - History detail views with approval status and PDF download
 - Header supports configurable profile name/role.
-- Header and sidebars for Pemohon and Admin layouts (Admin sidebar supports active navigation).
+- Sidebars for Pemohon, Admin, and Atasan layouts with active navigation.
+- AtasanSidebar includes inbox badge counter.
 
 ## Not implemented / pending
 - Backend integration (API, auth, persistence).
 - Role-based auth enforcement on server side.
-- Approval logic (4 approvers, token validation).
-- Approver UI (Atasan) for approving IPBJ/Quotation.
+- Approval logic (4 approvers, token validation) - backend only.
 - Real Quotation and PO create/edit flows (data entry, validation).
 - PDF generation flow for PO.
 - Real data for history and account settings.
 - Admin LPBJ actions are mock (no create/delete persistence).
+- Atasan approval actions need backend API integration.
 
 ## Current behavior notes
 - Authentication uses localStorage with React Router v6.
@@ -67,24 +76,43 @@ Project context and current implementation status for the LPBJ / IPBJ frontend.
 - /pemohon/history - History view
 - /pemohon/account - Account settings
 
+### Atasan Routes (/atasan/*)
+- /atasan/dashboard - Atasan home with pending approval stats
+- /atasan/inbox - Approval inbox with LPBJ/Quotation tabs
+- /atasan/inbox/lpbj/:id - LPBJ detail with approve/reject actions
+- /atasan/inbox/quotation/:id - Quotation detail with approve/reject actions
+- /atasan/history - Approval history with LPBJ/Quotation tabs
+- /atasan/history/lpbj/:id - Historical LPBJ detail with status
+- /atasan/history/quotation/:id - Historical Quotation detail with status
+
 ### Public Routes
-- /login - Login page
+- /login - Login page (with Pemohon/Admin/Atasan buttons)
 - / - Redirects to /login
 
 ## Files to know
 - `FLOW.md`: Final locked flow, roles, and ERD summary.
 - `src/App.tsx`: React Router configuration with protected routes.
-- `src/contexts/AuthContext.tsx`: Authentication state management with localStorage.
+- `src/contexts/AuthContext.tsx`: Authentication state management with localStorage (supports pemohon/admin/atasan).
 - `src/components/ProtectedRoute.tsx`: Route protection wrapper component.
 - `src/layouts/AdminLayout.tsx`: Admin layout with sidebar and header.
 - `src/layouts/PemohonLayout.tsx`: Pemohon layout with sidebar and header.
+- `src/layouts/AtasanLayout.tsx`: Atasan layout with sidebar and header.
 - `src/pages/admin/AdminDashboard/AdminDashboard.tsx`: Admin dashboard home.
 - `src/pages/admin/AdminLpbj/AdminLpbj.tsx`: Admin LPBJ list/detail UI.
 - `src/pages/pemohon/PemohonDashboard/PemohonDashboard.tsx`: Pemohon dashboard with LPBJ list.
 - `src/pages/pemohon/PemohonLpbj/PemohonLpbj.tsx`: LPBJ form + edit modal.
 - `src/pages/pemohon/AccountSetting/AccountSetting.tsx`: Account settings page.
+- `src/pages/atasan/AtasanDashboard/AtasanDashboard.tsx`: Atasan dashboard with pending approval stats.
+- `src/pages/atasan/AtasanInbox/AtasanInbox.tsx`: Approval inbox with LPBJ/Quotation tabs.
+- `src/pages/atasan/LpbjDetail/LpbjDetail.tsx`: LPBJ approval detail view.
+- `src/pages/atasan/QuotationDetail/QuotationDetail.tsx`: Quotation approval detail view.
+- `src/pages/atasan/AtasanHistory/AtasanHistory.tsx`: Approval history list.
+- `src/pages/atasan/HistoryLpbjDetail/HistoryLpbjDetail.tsx`: Historical LPBJ detail.
+- `src/pages/atasan/HistoryQuotationDetail/HistoryQuotationDetail.tsx`: Historical Quotation detail.
+- `src/components/TokenModal/TokenModal.tsx`: Token input modal for approvals.
 - `src/components/Sidebar/Sidebar.tsx`: Admin sidebar navigation with React Router Links.
 - `src/components/PemohonSidebar/PemohonSidebar.tsx`: Pemohon sidebar navigation with React Router Links.
+- `src/components/AtasanSidebar/AtasanSidebar.tsx`: Atasan sidebar navigation with badge counter.
 
 ## Constraints (from final flow)
 - Admin can view all, create IPBJ/Quotation/PO, but never approve.

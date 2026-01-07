@@ -1,8 +1,8 @@
 import type { FC, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './AccountSetting.module.css';
+import styles from './AdminAccountSetting.module.css';
 
-const AccountSetting: FC = () => {
+const AdminAccountSetting: FC = () => {
   const navigate = useNavigate();
 
   return (
@@ -10,7 +10,7 @@ const AccountSetting: FC = () => {
       <button
         type="button"
         className={styles.backButton}
-        onClick={() => navigate('/pemohon/dashboard')}
+        onClick={() => navigate('/admin/dashboard')}
         aria-label="Kembali"
       >
         <ArrowLeftIcon className={styles.backIcon} />
@@ -23,8 +23,8 @@ const AccountSetting: FC = () => {
           <div className={styles.avatar}>
             <img src="/profile-placeholder.jpg" alt="Profile" />
           </div>
-          <div className={styles.profileName}>Habibi Cholis El G</div>
-          <div className={styles.profileRole}>Pemohon</div>
+          <div className={styles.profileName}>Fieco Alvanu Jansen</div>
+          <div className={styles.profileRole}>Administrator</div>
           <button type="button" className={styles.secondaryButton}>
             Ubah Foto
           </button>
@@ -40,20 +40,20 @@ const AccountSetting: FC = () => {
             <Field label="Nama Lengkap">
               <input
                 className={styles.input}
-                defaultValue="Habibi Cholis El G"
+                defaultValue="Fieco Alvanu Jansen"
               />
             </Field>
             <Field label="Email">
               <input
                 className={styles.input}
-                defaultValue="habibi@example.com"
+                defaultValue="fieco@example.com"
               />
             </Field>
             <Field label="No. HP">
               <input className={styles.input} defaultValue="08123456789" />
             </Field>
             <Field label="Departemen">
-              <input className={styles.input} defaultValue="Direct Sales" />
+              <input className={styles.input} defaultValue="IT Admin" />
             </Field>
             <Field label="Alamat" full>
               <textarea
@@ -66,7 +66,7 @@ const AccountSetting: FC = () => {
             <button type="button" className={styles.primaryButton}>
               Simpan
             </button>
-            <button type="button" className={styles.ghostButton} onClick={() => navigate('/pemohon/dashboard')}>
+            <button type="button" className={styles.ghostButton} onClick={() => navigate('/admin/dashboard')}>
               Batal
             </button>
           </div>
@@ -140,4 +140,4 @@ const ArrowLeftIcon: FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-export default AccountSetting;
+export default AdminAccountSetting;

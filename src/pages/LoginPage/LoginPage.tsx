@@ -8,9 +8,15 @@ const LoginPage: FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleRoleSignIn = (role: 'pemohon' | 'admin') => {
+  const handleRoleSignIn = (role: 'pemohon' | 'admin' | 'atasan') => {
     login(role);
-    navigate(role === 'admin' ? '/admin/dashboard' : '/pemohon/dashboard');
+    if (role === 'admin') {
+      navigate('/admin/dashboard');
+    } else if (role === 'atasan') {
+      navigate('/atasan/dashboard');
+    } else {
+      navigate('/pemohon/dashboard');
+    }
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -103,6 +109,13 @@ const LoginPage: FC = () => {
                 onClick={() => handleRoleSignIn('admin')}
               >
                 Admin
+              </button>
+              <button
+                type="button"
+                className={styles.tempButton}
+                onClick={() => handleRoleSignIn('atasan')}
+              >
+                Atasan
               </button>
             </div>
           </div>
