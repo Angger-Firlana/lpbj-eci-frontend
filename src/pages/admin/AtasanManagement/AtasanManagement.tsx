@@ -1,32 +1,35 @@
 import { useState, type FC } from 'react';
-import styles from './UserManagement.module.css';
+import styles from './AtasanManagement.module.css';
 
-interface PemohonUser {
+interface AtasanUser {
   id: string;
   nama: string;
   email: string;
   departemen: string;
+  token: string;
   password?: string;
 }
 
-const UserManagement: FC = () => {
-  const [selectedPemohon, setSelectedPemohon] = useState<PemohonUser | null>(null);
+const AtasanManagement: FC = () => {
+  const [selectedAtasan, setSelectedAtasan] = useState<AtasanUser | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [showToken, setShowToken] = useState(false);
 
-  const [pemohonUsers, setPemohonUsers] = useState<PemohonUser[]>([
-    { id: '1', nama: 'Tristan', email: 'Trisgan123@gmail.com', departemen: 'Direct Sales', password: 'Tristan123' },
-    { id: '2', nama: 'Pak David', email: 'David123@gmail.com', departemen: 'IT OPERATION', password: 'david123' },
+  const [atasanUsers, setAtasanUsers] = useState<AtasanUser[]>([
+    { id: '1', nama: 'Pak David', email: 'David123@gmail.com', departemen: 'IT OPERATION', token: '123456', password: 'david123' },
+    { id: '2', nama: 'Pak David', email: 'David123@gmail.com', departemen: 'IT OPERATION', token: '123456', password: 'david123' },
   ]);
 
-  const handleSelectPemohon = (user: PemohonUser) => {
-    setSelectedPemohon(user);
+  const handleSelectAtasan = (user: AtasanUser) => {
+    setSelectedAtasan(user);
     setShowPassword(false);
+    setShowToken(false);
   };
 
-  const handleDeletePemohon = () => {
-    if (selectedPemohon) {
-      setPemohonUsers((prev) => prev.filter((u) => u.id !== selectedPemohon.id));
-      setSelectedPemohon(null);
+  const handleDeleteAtasan = () => {
+    if (selectedAtasan) {
+      setAtasanUsers((prev) => prev.filter((u) => u.id !== selectedAtasan.id));
+      setSelectedAtasan(null);
     }
   };
 
@@ -34,63 +37,66 @@ const UserManagement: FC = () => {
     alert('Data berhasil disimpan (dummy)');
   };
 
-  const handleAddPemohon = () => {
-    const newUser: PemohonUser = {
+  const handleAddAtasan = () => {
+    const newUser: AtasanUser = {
       id: `new-${Date.now()}`,
       nama: '',
       email: '',
       departemen: '',
+      token: '',
       password: '',
     };
-    setPemohonUsers((prev) => [...prev, newUser]);
-    setSelectedPemohon(newUser);
+    setAtasanUsers((prev) => [...prev, newUser]);
+    setSelectedAtasan(newUser);
   };
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.pageTitle}>Pemohon Management</h1>
+      <h1 className={styles.pageTitle}>Atasan Management</h1>
 
       <div className={styles.content}>
         <div className={styles.mainContent}>
           <div className={styles.headerRow}>
             <div className={styles.userCount}>
               <UsersIcon className={styles.userIcon} />
-              {`${pemohonUsers.length} Pemohon`}
+              {`${atasanUsers.length} Atasan`}
             </div>
             <button
               type="button"
               className={styles.addButton}
-              onClick={handleAddPemohon}
+              onClick={handleAddAtasan}
             >
-              Tambah Pemohon
+              Tambah Atasan
             </button>
           </div>
 
           <section className={styles.card}>
-            <div className={`${styles.tableHeader} ${styles.tableHeaderPemohon}`}>
+            <div className={`${styles.tableHeader} ${styles.tableHeaderAtasan}`}>
               <span>Nama</span>
               <span>Email</span>
               <span>Departemen</span>
+              <span>Token</span>
               <span>Aksi</span>
             </div>
-            {pemohonUsers.map((user) => (
+            {atasanUsers.map((user) => (
               <div
                 key={user.id}
-                className={`${styles.tableRow} ${styles.tableRowPemohon} ${
-                  selectedPemohon?.id === user.id ? styles.tableRowSelected : ''
+                className={`${styles.tableRow} ${styles.tableRowAtasan} ${
+                  selectedAtasan?.id === user.id ? styles.tableRowSelected : ''
                 }`}
-                onClick={() => handleSelectPemohon(user)}
+                onClick={() => handleSelectAtasan(user)}
               >
                 <span>{user.nama}</span>
                 <span>{user.email}</span>
                 <span>{user.departemen}</span>
+                <span>{user.token}</span>
                 <span>
                   <button
                     type="button"
                     className={styles.iconButton}
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleSelectPemohon(user);
+                      handleSelectAtasan(user);
                     }}
                     title="View"
                   >
@@ -103,7 +109,7 @@ const UserManagement: FC = () => {
         </div>
 
         <aside className={styles.sidePanel}>
-          {selectedPemohon ? (
+          {selectedAtasan ? (
             <>
               <div className={styles.avatarSection}>
                 <div className={styles.avatarPlaceholder}>
@@ -116,9 +122,9 @@ const UserManagement: FC = () => {
                 <input
                   type="text"
                   className={styles.input}
-                  value={selectedPemohon.nama}
+                  value={selectedAtasan.nama}
                   onChange={(e) =>
-                    setSelectedPemohon({ ...selectedPemohon, nama: e.target.value })
+                    setSelectedAtasan({ ...selectedAtasan, nama: e.target.value })
                   }
                 />
               </div>
@@ -128,9 +134,9 @@ const UserManagement: FC = () => {
                 <input
                   type="email"
                   className={styles.input}
-                  value={selectedPemohon.email}
+                  value={selectedAtasan.email}
                   onChange={(e) =>
-                    setSelectedPemohon({ ...selectedPemohon, email: e.target.value })
+                    setSelectedAtasan({ ...selectedAtasan, email: e.target.value })
                   }
                 />
               </div>
@@ -142,9 +148,9 @@ const UserManagement: FC = () => {
                     type={showPassword ? 'text' : 'password'}
                     className={styles.input}
                     style={{ width: '100%', paddingRight: '36px' }}
-                    value={selectedPemohon.password || ''}
+                    value={selectedAtasan.password || ''}
                     onChange={(e) =>
-                      setSelectedPemohon({ ...selectedPemohon, password: e.target.value })
+                      setSelectedAtasan({ ...selectedAtasan, password: e.target.value })
                     }
                   />
                   <button
@@ -162,15 +168,37 @@ const UserManagement: FC = () => {
                 <input
                   type="text"
                   className={styles.input}
-                  value={selectedPemohon.departemen}
+                  value={selectedAtasan.departemen}
                   onChange={(e) =>
-                    setSelectedPemohon({ ...selectedPemohon, departemen: e.target.value })
+                    setSelectedAtasan({ ...selectedAtasan, departemen: e.target.value })
                   }
                 />
               </div>
 
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Token</label>
+                <div className={styles.inputWithIcon}>
+                  <input
+                    type={showToken ? 'text' : 'password'}
+                    className={styles.input}
+                    style={{ width: '100%', paddingRight: '36px' }}
+                    value={selectedAtasan.token}
+                    onChange={(e) =>
+                      setSelectedAtasan({ ...selectedAtasan, token: e.target.value })
+                    }
+                  />
+                  <button
+                    type="button"
+                    className={styles.inputIcon}
+                    onClick={() => setShowToken(!showToken)}
+                  >
+                    <EyeIcon />
+                  </button>
+                </div>
+              </div>
+
               <div className={styles.actionButtons}>
-                <button type="button" className={styles.deleteButton} onClick={handleDeletePemohon}>
+                <button type="button" className={styles.deleteButton} onClick={handleDeleteAtasan}>
                   Hapus
                 </button>
                 <button type="button" className={styles.saveButton} onClick={handleSave}>
@@ -217,4 +245,4 @@ const UserIcon: FC = () => (
   </svg>
 );
 
-export default UserManagement;
+export default AtasanManagement;

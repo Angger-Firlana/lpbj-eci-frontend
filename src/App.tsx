@@ -16,7 +16,7 @@ import CreatePO from './pages/admin/CreatePO/CreatePO';
 import AdminPurchaseOrder from './pages/admin/AdminPurchaseOrder/AdminPurchaseOrder';
 import AdminHistory from './pages/admin/AdminHistory/AdminHistory';
 import UserManagement from './pages/admin/UserManagement/UserManagement';
-import AtasanPage from './pages/admin/placeholders/AtasanPage';
+import AtasanManagement from './pages/admin/AtasanManagement/AtasanManagement';
 import AdminAccountSetting from './pages/admin/AdminAccountSetting/AdminAccountSetting';
 
 import PemohonDashboard from './pages/pemohon/PemohonDashboard/PemohonDashboard';
@@ -61,7 +61,7 @@ function App() {
             <Route path="purchase" element={<AdminPurchaseOrder />} />
             <Route path="history" element={<AdminHistory />} />
             <Route path="users" element={<UserManagement />} />
-            <Route path="atasan" element={<AtasanPage />} />
+            <Route path="atasan" element={<AtasanManagement />} />
             <Route path="account" element={<AdminAccountSetting />} />
           </Route>
 

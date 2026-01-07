@@ -7,8 +7,9 @@
 .tabs {
   display: flex;
   gap: 4px;
-  border-bottom: 1px solid #D0D0D0;
+  border-bottom: 2px solid #D0D0D0;
   background: transparent;
+  flex-wrap: wrap;
 }
 
 .tab {
@@ -19,30 +20,26 @@
   color: #666;
   background: #E5E5E5;
   border: 1px solid #D0D0D0;
-  border-bottom: 1px solid #D0D0D0;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.tab:first-child {
-  border-radius: 8px 0 0 0;
-}
-
-.tab:last-child {
-  border-radius: 0 8px 0 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  min-width: 120px;
 }
 
 .tab:hover {
   background: #D9D9D9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 .tabActive {
-  background: white;
-  color: black;
+  background: #FFFFFF;
+  color: #000000;
   font-weight: 500;
-  border-bottom: 1px solid white;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.08);
+  border: 2px solid #0086BD;
+  border-bottom: 2px solid #FFFFFF;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   position: relative;
   z-index: 1;
 }
