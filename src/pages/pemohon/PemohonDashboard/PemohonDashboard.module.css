@@ -174,18 +174,29 @@
 .tabButton {
   padding: 8px 16px;
   border-radius: 12px 12px 0 0;
-  background: #d9d9d9;
-  border: none;
-  color: #ffffff;
+  background: #E5E5E5;
+  border: 1px solid #D0D0D0;
+  border-bottom: 1px solid #D0D0D0;
+  color: #666;
   font-size: 14px;
   cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tabButton:hover {
+  background: #D9D9D9;
 }
 
 .activeTab {
   background: #ffffff;
   color: #1a1a1a;
-  border: 1px solid #d9d9d9;
-  border-bottom: none;
+  border: 1px solid #D0D0D0;
+  border-bottom: 1px solid #ffffff;
+  font-weight: 500;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 1;
 }
 
 .detailGrid {

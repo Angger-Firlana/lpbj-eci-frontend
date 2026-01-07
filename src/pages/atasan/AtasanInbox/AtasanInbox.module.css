@@ -6,8 +6,9 @@
 
 .tabs {
   display: flex;
-  gap: 0;
-  border-bottom: 1px solid #E5E5E5;
+  gap: 4px;
+  border-bottom: 1px solid #D0D0D0;
+  background: transparent;
 }
 
 .tab {
@@ -17,9 +18,11 @@
   font-weight: 400;
   color: #666;
   background: #E5E5E5;
-  border: none;
+  border: 1px solid #D0D0D0;
+  border-bottom: 1px solid #D0D0D0;
   cursor: pointer;
   transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .tab:first-child {
@@ -30,9 +33,18 @@
   border-radius: 0 8px 0 0;
 }
 
+.tab:hover {
+  background: #D9D9D9;
+}
+
 .tabActive {
   background: white;
   color: black;
+  font-weight: 500;
+  border-bottom: 1px solid white;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 1;
 }
 
 .content {

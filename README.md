@@ -235,21 +235,21 @@ lpbj-eci-frontend/
 - Create & submit IPBJ/LPBJ
 - View own IPBJ only
 - Cannot approve
-- **Status**: ✅ Fully implemented
+- **Status**: ✅ UI Complete
 
 ### Admin
 - View all IPBJ/LPBJ
 - Create IPBJ, Quotation, PO
 - Cannot approve
 - Manage approvers
-- **Status**: ✅ Fully implemented
+- **Status**: ⚠️ Quotation page needs UI revision
 
 ### Atasan (Approver)
 - View IPBJ/Quotation waiting for approval
 - Approve/Reject with token input
 - View approval history
 - Cannot create/edit
-- **Status**: ✅ Fully implemented (UI ready, backend pending)
+- **Status**: ✅ UI Complete (backend pending)
 
 ---
 

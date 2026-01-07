@@ -2,24 +2,40 @@
 
 Project context and current implementation status for the LPBJ / IPBJ frontend.
 
+## Recent updates (Latest)
+- **2026-01-07**: Atasan (Approver) role complete implementation
+  - Added full Atasan UI: Dashboard, Inbox (LPBJ/Quotation tabs), Approval details, History
+  - Created TokenModal component for approval with token input
+  - Fixed tab styling across all pages for better visibility and contrast
+  - Updated AuthContext to support 3 roles: pemohon, admin, atasan
+  - Added AtasanSidebar with inbox badge counter
+  - Updated all documentation (README, AGENTS, FLOW) with current status
+
 ## Project summary
 - Frontend: React + TypeScript + Vite with CSS modules + React Router v6.
 - UI focuses on LPBJ/IPBJ submission flow and approvals.
 - LPBJ/IPBJ naming is used interchangeably; database uses `lpbj`.
 - Final flow and ERD are documented in `FLOW.md`.
 - Uses React Router v6 for URL-based navigation with role-based protected routes.
+- 3 user roles: Pemohon (✅ complete), Admin (⚠️ Quotation needs revision), Atasan (✅ complete)
 
 ## Implemented (UI)
 - Login page with temporary role buttons (Pemohon, Admin, Atasan).
-- Pemohon dashboard: list, detail tabs (LPBJ / Quotation / PO), status panel.
-- Pemohon LPBJ form: info section, add item form, list item table.
-- LPBJ edit modal (dummy) reuses add item form layout.
-- History page (dummy list).
-- Account setting page (placeholder layout based on ERD images).
-- Admin dashboard stub (stats and sections).
-- Admin LPBJ screens: list view, detail view, approver selection, status panel.
-- Admin approver modal (Atur Apporver) for selecting approvers (UI only).
-- **Atasan (Approver) complete UI**:
+- **Pemohon pages** (✅ Complete):
+  - Dashboard: list, detail tabs (LPBJ / Quotation / PO), status panel
+  - LPBJ form: info section, add item form, list item table
+  - LPBJ edit modal (dummy) reuses add item form layout
+  - History page (dummy list)
+  - Account setting page (placeholder layout based on ERD images)
+- **Admin pages**:
+  - Dashboard stub (stats and sections) ✅
+  - LPBJ screens: list view, detail view, approver selection, status panel ✅
+  - Approver modal (Atur Apporver) for selecting approvers (UI only) ✅
+  - Quotation management ⚠️ (needs UI revision)
+  - Purchase Order management ✅
+  - History page ✅
+  - User management ✅
+- **Atasan (Approver) pages** (✅ Complete):
   - Dashboard with LPBJ/Quotation pending stats and empty states
   - Inbox page with LPBJ/Quotation tabs showing approval queue
   - LPBJ detail view with Approve/Reject buttons
@@ -27,19 +43,23 @@ Project context and current implementation status for the LPBJ / IPBJ frontend.
   - Token input modal with validation warning
   - History page with LPBJ/Quotation tabs
   - History detail views with approval status and PDF download
-- Header supports configurable profile name/role.
-- Sidebars for Pemohon, Admin, and Atasan layouts with active navigation.
-- AtasanSidebar includes inbox badge counter.
+- **Layouts & Components**:
+  - Header supports configurable profile name/role
+  - Sidebars for Pemohon, Admin, and Atasan with active navigation
+  - AtasanSidebar includes inbox badge counter
+  - Improved tab styling with better contrast and visibility
 
 ## Not implemented / pending
+### Backend (全般)
 - Backend integration (API, auth, persistence).
 - Role-based auth enforcement on server side.
 - Approval logic (4 approvers, token validation) - backend only.
-- Real Quotation and PO create/edit flows (data entry, validation).
-- PDF generation flow for PO.
 - Real data for history and account settings.
 - Admin LPBJ actions are mock (no create/delete persistence).
 - Atasan approval actions need backend API integration.
+
+### Frontend (Admin pages need revision)
+- **Admin Quotation page**: Current placeholder needs complete UI redesign
 
 ## Current behavior notes
 - Authentication uses localStorage with React Router v6.
